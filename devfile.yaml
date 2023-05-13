@@ -3,13 +3,6 @@ metadata:
   name: ryan-devspace-workspace1
   version: 1.0.0
 projects:
-  - name: todo-demo-app
-    git:
-      remotes:
-        origin: 'https://github.com/ryanzhang/todo-demo-app.git'
-      checkoutFrom:
-        revision: main
-    clonePath: todo-demo-app
   - name: vuejs-todo-app
     git:
       remotes:
