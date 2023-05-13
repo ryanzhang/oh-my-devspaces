@@ -16,7 +16,7 @@ projects:
         origin: 'https://github.com/ryanzhang/vuejs-todo-app.git'
       checkoutFrom:
         revision: main
-    clonepath: vuejs-todo-app
+    clonePath: vuejs-todo-app
 components:
   - name: tools
     container:
