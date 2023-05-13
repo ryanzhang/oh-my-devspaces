@@ -2,6 +2,7 @@ schemaVersion: 2.2.0
 metadata:
   name: ryan-devspace-workspace1
   version: 1.0.0
+projectsRoot: /projects
 projects:
   - name: vuejs-todo-app
     git:
