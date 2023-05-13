@@ -1,0 +1,56 @@
+schemaVersion: 2.2.0
+metadata:
+  name: ryan-devspace-workspace1
+  version: 1.0.0
+projects:
+  - name: todo-demo-app
+    git:
+      remotes:
+        origin: 'https://github.com/ryanzhang/todo-demo-app.git'
+      checkoutFrom:
+        revision: main
+  - name: vuejs-todo-app
+    git:
+      remotes:
+        origin: 'https://github.com/ryanzhang/vuejs-todo-app.git'
+      checkoutFrom:
+        revision: main
+components:
+  - name: tools
+    container:
+      image: registry.redhat.io/devspaces/udi-rhel8:3.5
+      memoryLimit: 4Gi
+      endpoints:
+        - exposure: none
+          name: debug
+          protocol: tcp
+          targetPort: 5005
+        - exposure: public
+          name: hello-endpoint
+          protocol: http
+          targetPort: 8080
+          path: /hello/greeting/devspaces-user          
+      volumeMounts:
+        - name: m2
+          path: /home/user/.m2
+  - name: m2
+    volume:
+      size: 1G
+commands:
+  - id: 1-package
+    exec:
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/todo-demo-app
+      commandLine: "mvn package"
+      group:
+        kind: build
+        isDefault: true
+  - id: 2-startdev
+    exec:
+      label: "Start Development mode (Hot reload + debug)"
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/todo-demo-app
+      commandLine: "mvn compile quarkus:dev"
+      group:
+        kind: run
+        isDefault: true     
