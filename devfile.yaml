@@ -10,6 +10,12 @@ projects:
       checkoutFrom:
         revision: main
     clonePath: vuejs-todo-app
+  - git:
+      checkoutFrom:
+        revision: main
+      remotes:
+        origin: 'https://github.com/ryanzhang/todo-demo-app.git'
+    name: todo-demo-app
 components:
   - name: tools
     container:
